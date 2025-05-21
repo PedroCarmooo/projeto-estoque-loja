@@ -1,8 +1,10 @@
-const express = require('express');
+const express = require('express'); 
 const path = require('path');
 const fs = require('fs');
 const app = express();
-const PORT = 3000;
+
+// Aceita a porta dinâmica do Render ou usa 3000 localmente
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -110,6 +112,7 @@ app.delete('/api/estoque/:id', (req, res) => {
   res.sendStatus(200);
 });
 
+// Inicia o servidor
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
