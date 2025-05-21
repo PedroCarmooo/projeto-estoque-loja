@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1747180030279",
+    "nome": "LUIZ DO GRAU",
+    "preco": 11,
+    "quantidade": 10
+  },
+  {
+    "id": "1747181921583",
+    "nome": "Nike Jordan Lixeira",
+    "preco": 5000,
+    "quantidade": 15,
+    "tamanho": 40
+  },
+  {
+    "id": "1747225533681",
+    "nome": "Gustavo lixo'",
+    "preco": 12000000000,
+    "quantidade": 12,
+    "tamanho": 44
+  },
+  {
+    "id": "1747697063627",
+    "nome": "jbjbj",
+    "preco": 55,
+    "quantidade": 1
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "projeto-estoque-loja",
+  "version": "1.0.0",
+  "description": "Sistema de estoque com login e registro para uma loja de tênis",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
