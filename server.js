@@ -1,24 +1,24 @@
-const express = require('express'); 
+const express = require('express');   
 const path = require('path');
 const fs = require('fs');
 const app = express();
 
-// Aceita a porta dinâmica do Render ou usa 3000 localmente
+// Usa a porta do ambiente (ex: Render) ou 3000 localmente
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Caminho para os arquivos
+// Caminhos dos arquivos de dados
 const dadosPath = path.join(__dirname, 'dados.json');
 const usuariosPath = path.join(__dirname, 'usuarios.json');
 
-// Utilitários para o estoque
+// Funções utilitárias
 function lerDados() {
   try {
     const data = fs.readFileSync(dadosPath, 'utf8');
     return JSON.parse(data);
-  } catch {
+  } catch (err) {
     return [];
   }
 }
@@ -27,12 +27,11 @@ function salvarDados(dados) {
   fs.writeFileSync(dadosPath, JSON.stringify(dados, null, 2));
 }
 
-// Utilitários para usuários
 function lerUsuarios() {
   try {
     const data = fs.readFileSync(usuariosPath, 'utf8');
     return JSON.parse(data);
-  } catch {
+  } catch (err) {
     return [];
   }
 }
@@ -41,7 +40,7 @@ function salvarUsuarios(usuarios) {
   fs.writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2));
 }
 
-// Login
+// Rotas de autenticação
 app.post('/login', (req, res) => {
   const { usuario, senha } = req.body;
   const usuarios = lerUsuarios();
@@ -54,7 +53,6 @@ app.post('/login', (req, res) => {
   }
 });
 
-// Registro
 app.post('/registrar', (req, res) => {
   const { usuario, senha } = req.body;
   const usuarios = lerUsuarios();
@@ -69,41 +67,39 @@ app.post('/registrar', (req, res) => {
   res.status(201).json({ sucesso: true });
 });
 
-// Listar produtos
+// Rotas de estoque
 app.get('/api/estoque', (req, res) => {
   const produtos = lerDados();
   res.json(produtos);
 });
 
-// Adicionar produto (agora inclui tamanho)
 app.post('/api/estoque', (req, res) => {
   const produtos = lerDados();
-  const { nome, preco, quantidade, tamanho } = req.body;
+  const { nome, preco, quantidade, tamanho, cor } = req.body;
   const novoProduto = {
     id: Date.now().toString(),
     nome,
     preco,
     quantidade,
-    tamanho
+    tamanho,
+    cor
   };
   produtos.push(novoProduto);
   salvarDados(produtos);
   res.status(201).json(novoProduto);
 });
 
-// Editar produto (agora inclui tamanho)
 app.put('/api/estoque/:id', (req, res) => {
   let produtos = lerDados();
   const id = req.params.id;
-  const { nome, preco, quantidade, tamanho } = req.body;
+  const { nome, preco, quantidade, tamanho, cor } = req.body;
   produtos = produtos.map(prod =>
-    prod.id === id ? { id, nome, preco, quantidade, tamanho } : prod
+    prod.id === id ? { id, nome, preco, quantidade, tamanho, cor } : prod
   );
   salvarDados(produtos);
   res.sendStatus(200);
 });
 
-// Remover produto
 app.delete('/api/estoque/:id', (req, res) => {
   let produtos = lerDados();
   const id = req.params.id;

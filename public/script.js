@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => { 
+document.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById("estoqueTable").getElementsByTagName("tbody")[0];
     const addBtn = document.getElementById("addProductButton");
     const formSection = document.getElementById("formSection");
@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const nomeInput = document.getElementById("nome");
     const precoInput = document.getElementById("preco");
     const quantidadeInput = document.getElementById("quantidade");
-    const tamanhoInput = document.getElementById("tamanho"); // NOVO
+    const tamanhoInput = document.getElementById("tamanho");
+    const corInput = document.getElementById("cor"); // NOVO
     const editandoId = document.getElementById("editandoId");
     const formTitle = document.getElementById("formTitle");
     const cancelarBtn = document.getElementById("cancelarBtn");
@@ -32,16 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const res = await fetch("/api/estoque");
         let produtos = await res.json();
 
-        // Filtrar pelo nome (ex: "Nike")
         const filtro = filtroNome.value.toLowerCase();
         if (filtro) {
             produtos = produtos.filter(produto => produto.nome.toLowerCase().includes(filtro));
         }
 
-        // Ordenar por tamanho (do menor para o maior)
         produtos.sort((a, b) => a.tamanho - b.tamanho);
 
-        table.innerHTML = ""; // limpa a tabela
+        table.innerHTML = "";
 
         produtos.forEach(produto => {
             const linha = table.insertRow();
@@ -52,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>R$ ${parseFloat(produto.preco).toFixed(2)}</td>
                 <td>${produto.quantidade}</td>
                 <td>${produto.tamanho}</td>
+                <td>${produto.cor || ""}</td> <!-- NOVO -->
                 <td>
                     <button class="editBtn">Editar</button>
                     <button class="removeBtn">Remover</button>
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarEventos();
     }
 
-    // Enviar formulário (criar ou editar)
+    // Enviar formulário
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -71,18 +71,17 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: nomeInput.value,
             preco: parseFloat(precoInput.value),
             quantidade: parseInt(quantidadeInput.value),
-            tamanho: parseInt(tamanhoInput.value) // NOVO
+            tamanho: parseInt(tamanhoInput.value),
+            cor: corInput.value // NOVO
         };
 
         if (id) {
-            // Editar produto
             await fetch(`/api/estoque/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(produto)
             });
         } else {
-            // Criar novo produto
             await fetch("/api/estoque", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -108,7 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 nomeInput.value = row.children[1].textContent;
                 precoInput.value = row.children[2].textContent.replace("R$ ", "").replace(",", ".");
                 quantidadeInput.value = row.children[3].textContent;
-                tamanhoInput.value = row.children[4].textContent; // NOVO
+                tamanhoInput.value = row.children[4].textContent;
+                corInput.value = row.children[5].textContent; // NOVO
 
                 editandoId.value = id;
                 formTitle.textContent = "Editar Tênis";
@@ -128,11 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Atualiza a tabela ao digitar no campo de filtro
     if (filtroNome) {
         filtroNome.addEventListener("input", carregarProdutos);
     }
 
-    // Inicializa a tabela ao carregar a página
     carregarProdutos();
 });
