@@ -8,13 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const precoInput = document.getElementById("preco");
     const quantidadeInput = document.getElementById("quantidade");
     const tamanhoInput = document.getElementById("tamanho");
-    const corInput = document.getElementById("cor"); // NOVO
+    const corInput = document.getElementById("cor");
     const editandoId = document.getElementById("editandoId");
     const formTitle = document.getElementById("formTitle");
     const cancelarBtn = document.getElementById("cancelarBtn");
     const filtroNome = document.getElementById("filtroNome");
 
-    // Mostrar formulário
     addBtn.addEventListener("click", () => {
         formTitle.textContent = "Adicionar Tênis";
         formSection.style.display = "block";
@@ -22,13 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
         editandoId.value = "";
     });
 
-    // Cancelar formulário
     cancelarBtn.addEventListener("click", () => {
         formSection.style.display = "none";
         form.reset();
     });
 
-    // Carregar produtos da API
     async function carregarProdutos() {
         const res = await fetch("/api/estoque");
         let produtos = await res.json();
@@ -38,7 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
             produtos = produtos.filter(produto => produto.nome.toLowerCase().includes(filtro));
         }
 
-        produtos.sort((a, b) => a.tamanho - b.tamanho);
+        // ✅ Ordenar alfabeticamente pelo nome
+        produtos.sort((a, b) => a.nome.localeCompare(b.nome));
 
         table.innerHTML = "";
 
@@ -51,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>R$ ${parseFloat(produto.preco).toFixed(2)}</td>
                 <td>${produto.quantidade}</td>
                 <td>${produto.tamanho}</td>
-                <td>${produto.cor || ""}</td> <!-- NOVO -->
+                <td>${produto.cor || ""}</td>
                 <td>
                     <button class="editBtn">Editar</button>
                     <button class="removeBtn">Remover</button>
@@ -62,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarEventos();
     }
 
-    // Enviar formulário
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -72,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
             preco: parseFloat(precoInput.value),
             quantidade: parseInt(quantidadeInput.value),
             tamanho: parseInt(tamanhoInput.value),
-            cor: corInput.value // NOVO
+            cor: corInput.value
         };
 
         if (id) {
@@ -94,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         carregarProdutos();
     });
 
-    // Eventos de editar/remover
     function atualizarEventos() {
         const editButtons = document.querySelectorAll(".editBtn");
         const removeButtons = document.querySelectorAll(".removeBtn");
@@ -108,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 precoInput.value = row.children[2].textContent.replace("R$ ", "").replace(",", ".");
                 quantidadeInput.value = row.children[3].textContent;
                 tamanhoInput.value = row.children[4].textContent;
-                corInput.value = row.children[5].textContent; // NOVO
+                corInput.value = row.children[5].textContent;
 
                 editandoId.value = id;
                 formTitle.textContent = "Editar Tênis";
