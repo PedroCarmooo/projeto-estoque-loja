@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Loja de Tênis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .register-link a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="fazerLogin(event)">
+            <input type="text" id="username" placeholder="Usuário" required>
+
+            <div class="password-wrapper">
+                <input type="password" id="password" placeholder="Senha" required>
+                <span class="toggle-password" onclick="toggleSenha()">👁️</span>
+            </div>
+
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="register-link">
+            <p>Não tem uma conta? <a href="registro.html">Criar conta</a></p>
+        </div>
+    </div>
+
+    <script>
+        async function fazerLogin(event) {
+            event.preventDefault();
+
+            const usuario = document.getElementById('username').value;
+            const senha = document.getElementById('password').value;
+
+            const resposta = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ usuario, senha })
+            });
+
+            const resultado = await resposta.json();
+
+            if (resultado.sucesso) {
+                window.location.href = 'estoque.html';
+            } else {
+                alert(resultado.mensagem);
+            }
+        }
+
+        function toggleSenha() {
+            const inputSenha = document.getElementById('password');
+            inputSenha.type = inputSenha.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+
+</body>
+</html>
