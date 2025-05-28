@@ -1,118 +1,218 @@
-/* style.css personalizado com tema preto, cinza e dourado */
-
+/* ---------- GERAL ---------- */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #121212;
-  color: #f0f0f0;
   margin: 0;
   padding: 0;
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* ---------- HEADER & NAV ---------- */
 header {
-  background-color: #1c1c1c;
-  padding: 1rem;
-  border-bottom: 2px solid gold;
+  background-color: #1e1e1e;
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.1);
 }
 
 nav ul {
-  list-style: none;
+  list-style-type: none;
   display: flex;
   justify-content: center;
   gap: 2rem;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 nav a {
-  color: gold;
   text-decoration: none;
+  color: #ffd700;
   font-weight: bold;
   transition: color 0.3s;
 }
 
 nav a:hover {
-  color: #cccccc;
+  color: #e6be00;
 }
 
+/* ---------- MAIN (Estoque) ---------- */
 main {
   max-width: 900px;
   margin: 2rem auto;
-  padding: 1rem;
-  background-color: #1c1c1c;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  padding: 0 1rem;
 }
 
 h1, h2 {
-  color: gold;
+  color: #ffd700;
   text-align: center;
 }
 
-input, button {
-  padding: 0.5rem;
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #2a2a2a;
+  color: #f0f0f0;
   margin: 0.5rem 0;
-  border-radius: 5px;
-  border: 1px solid #444;
-  background-color: #2c2c2c;
-  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input::placeholder {
   color: #aaa;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+table th {
+  background-color: #2e2e2e;
+  color: #ffd700;
+}
+
 button {
-  background-color: gold;
-  color: #000;
+  background-color: #ffd700;
+  color: #1e1e1e;
   font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #e6b800;
+  background-color: #e6be00;
 }
 
+/* Formulário Estoque */
 #formSection {
   margin-top: 2rem;
-  padding: 1rem;
-  background-color: #2c2c2c;
-  border: 1px solid gold;
-  border-radius: 8px;
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
 }
 
 label {
-  display: block;
-  margin-top: 0.5rem;
-  color: gold;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
+  font-weight: bold;
   margin-top: 1rem;
+  display: block;
 }
 
-thead {
-  background-color: #333;
-  color: gold;
-}
-
-th, td {
-  padding: 0.75rem;
-  text-align: center;
-  border-bottom: 1px solid #555;
-}
-
-tr:hover {
-  background-color: #2a2a2a;
-}
-
+/* ---------- FOOTER ---------- */
 footer {
   text-align: center;
   padding: 1rem;
-  background-color: #1c1c1c;
+  background-color: #1e1e1e;
   color: #aaa;
-  border-top: 1px solid #444;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- LOGIN & REGISTRO ---------- */
+.auth-body {
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-container {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+  width: 320px;
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ffd700;
+}
+
+.auth-container label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+}
+
+.auth-container input::placeholder {
+  color: #aaa;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 1.5rem;
+  background-color: #ffd700;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.auth-container button:hover {
+  background-color: #e6be00;
+}
+
+.auth-footer-text {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.auth-footer-text a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.auth-footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Ícone olho senha ---------- */
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  color: #aaa;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 40px;
 }
