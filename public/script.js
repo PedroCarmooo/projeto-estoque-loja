@@ -16,6 +16,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const filtroTamanho = document.getElementById("filtroTamanho");
     const filtroCor = document.getElementById("filtroCor"); // NOVO
 
+    // NOVO: toggle senha
+    const senhaInput = document.getElementById("senha");
+    const togglePassword = document.getElementById("togglePassword");
+    if (togglePassword && senhaInput) {
+        togglePassword.addEventListener("click", () => {
+            const tipo = senhaInput.type === "password" ? "text" : "password";
+            senhaInput.type = tipo;
+
+            // Alterna o ícone
+            togglePassword.classList.toggle("fa-eye");
+            togglePassword.classList.toggle("fa-eye-slash");
+        });
+    }
+
     addBtn.addEventListener("click", () => {
         formTitle.textContent = "Adicionar Tênis";
         formSection.style.display = "block";
