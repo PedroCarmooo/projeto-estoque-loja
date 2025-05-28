@@ -5,6 +5,11 @@ body {
   background-color: #121212;
   color: #f0f0f0;
   font-family: 'Segoe UI', sans-serif;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
 }
 
 /* ---------- HEADER & NAV ---------- */
@@ -15,7 +20,7 @@ header {
 }
 
 nav ul {
-  list-style-type: none;
+  list-style: none;
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -36,14 +41,48 @@ nav a:hover {
 
 /* ---------- MAIN (Estoque) ---------- */
 main {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 2rem auto;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 h1, h2 {
   color: #ffd700;
   text-align: center;
+}
+
+/* Seções lado a lado em telas grandes */
+#estoqueContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  #estoqueContainer {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  #formSection, #tabelaSection {
+    flex: 1;
+  }
+}
+
+#formSection {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+}
+
+label {
+  font-weight: bold;
+  margin-top: 1rem;
+  display: block;
 }
 
 input[type="text"],
@@ -53,19 +92,34 @@ input[type="number"] {
   border-radius: 6px;
   background-color: #2a2a2a;
   color: #f0f0f0;
-  margin: 0.5rem 0;
+  margin-top: 0.3rem;
   width: 100%;
-  box-sizing: border-box;
 }
 
 input::placeholder {
   color: #aaa;
 }
 
+button {
+  background-color: #ffd700;
+  color: #1e1e1e;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #e6be00;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
   background-color: #1e1e1e;
   color: #f0f0f0;
   border-radius: 8px;
@@ -83,53 +137,14 @@ table th {
   color: #ffd700;
 }
 
-button {
-  background-color: #ffd700;
-  color: #1e1e1e;
-  font-weight: bold;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #e6be00;
-}
-
-/* Formulário Estoque */
-#formSection {
-  margin-top: 2rem;
-  background-color: #1a1a1a;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
-}
-
-label {
-  font-weight: bold;
-  margin-top: 1rem;
-  display: block;
-}
-
-/* ---------- FOOTER ---------- */
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #1e1e1e;
-  color: #aaa;
-  margin-top: 3rem;
-  font-size: 0.9rem;
-}
-
 /* ---------- LOGIN & REGISTRO ---------- */
 .auth-body {
-  background-color: #121212;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #121212;
+  padding: 1rem;
 }
 
 .auth-container {
@@ -138,7 +153,8 @@ footer {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-  width: 320px;
+  width: 100%;
+  max-width: 350px;
 }
 
 .auth-title {
@@ -150,7 +166,6 @@ footer {
 .auth-container label {
   display: block;
   margin-top: 1rem;
-  margin-bottom: 0.3rem;
   font-weight: bold;
 }
 
@@ -161,6 +176,7 @@ footer {
   border-radius: 6px;
   background-color: #2a2a2a;
   color: #f0f0f0;
+  margin-top: 0.3rem;
 }
 
 .auth-container input::placeholder {
@@ -215,4 +231,14 @@ footer {
 
 .password-wrapper input {
   padding-right: 40px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  color: #aaa;
+  margin-top: 3rem;
+  font-size: 0.9rem;
 }
