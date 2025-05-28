@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .auth-support {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #ffd700;
+      font-size: 0.9rem;
+    }
+
+    .auth-support div {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .auth-support i {
+      color: #ffd700;
+    }
+
+    @media (max-height: 600px) {
+      .auth-support {
+        position: static;
+        margin-top: 2rem;
+      }
+    }
+  </style>
 </head>
 <body class="auth-body">
 
@@ -28,6 +58,13 @@
     <div class="auth-footer-text">
       <p>Não tem uma conta? <a href="registro.html">Criar conta</a></p>
     </div>
+  </div>
+
+  <!-- Contatos de Suporte -->
+  <div class="auth-support">
+    <div><i class="fab fa-instagram"></i> Suporte.Tenis</div>
+    <div><i class="fas fa-envelope"></i> suporte.estoque@gmail.com</div>
+    <div><i class="fas fa-phone"></i> +55 11 94002-8922</div>
   </div>
 
   <script>
