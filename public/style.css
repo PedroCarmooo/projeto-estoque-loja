@@ -12,6 +12,12 @@ body {
   box-sizing: inherit;
 }
 
+input:focus,
+button:focus {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+}
+
 /* ---------- HEADER & NAV ---------- */
 header {
   background-color: #1e1e1e;
@@ -86,20 +92,27 @@ label {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+select {
   padding: 10px;
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 6px;
   background-color: #2a2a2a;
   color: #f0f0f0;
   margin-top: 0.3rem;
   width: 100%;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #ffd700;
 }
 
 input::placeholder {
   color: #aaa;
 }
 
+/* Botões principais */
 button {
   background-color: #ffd700;
   color: #1e1e1e;
@@ -115,6 +128,35 @@ button {
 
 button:hover {
   background-color: #e6be00;
+}
+
+/* Botões secundários menores (ex: editar/remover) */
+.editBtn,
+.removeBtn {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.editBtn {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.editBtn:hover {
+  background-color: #3e8e41;
+}
+
+.removeBtn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.removeBtn:hover {
+  background-color: #d32f2f;
 }
 
 table {
@@ -172,11 +214,15 @@ table th {
 .auth-container input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 6px;
   background-color: #2a2a2a;
   color: #f0f0f0;
   margin-top: 0.3rem;
+}
+
+.auth-container input:focus {
+  border-color: #ffd700;
 }
 
 .auth-container input::placeholder {
@@ -231,6 +277,25 @@ table th {
 
 .password-wrapper input {
   padding-right: 40px;
+}
+
+/* ---------- FEEDBACK E MENSAGENS ---------- */
+.alert {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #2e7d32;
+  color: #fff;
+}
+
+.alert-error {
+  background-color: #c62828;
+  color: #fff;
 }
 
 /* ---------- FOOTER ---------- */

@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <title>Cadastro de Usuário</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Ícones Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="auth-body">
   <div class="auth-container">
@@ -28,40 +33,7 @@
     </div>
   </div>
 
-  <!-- Ícone de senha -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
-  
-  <script>
-    document.getElementById('registroForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const usuario = document.getElementById('usuario').value;
-      const senha = document.getElementById('senha').value;
-
-      const res = await fetch('/registrar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ usuario, senha })
-      });
-
-      const dados = await res.json();
-
-      if (dados.sucesso) {
-        alert('Usuário cadastrado com sucesso!');
-        window.location.href = 'index.html';
-      } else {
-        alert(dados.mensagem || 'Erro ao cadastrar.');
-      }
-    });
-
-    document.getElementById("togglePassword").addEventListener("click", () => {
-      const senhaInput = document.getElementById("senha");
-      const toggleIcon = document.getElementById("togglePassword");
-
-      senhaInput.type = senhaInput.type === "password" ? "text" : "password";
-      toggleIcon.classList.toggle("fa-eye");
-      toggleIcon.classList.toggle("fa-eye-slash");
-    });
-  </script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
