@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formTitle = document.getElementById("formTitle");
     const cancelarBtn = document.getElementById("cancelarBtn");
     const filtroNome = document.getElementById("filtroNome");
+    const filtroTamanho = document.getElementById("filtroTamanho"); // NOVO
 
     addBtn.addEventListener("click", () => {
         formTitle.textContent = "Adicionar Tênis";
@@ -30,12 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const res = await fetch("/api/estoque");
         let produtos = await res.json();
 
-        const filtro = filtroNome.value.toLowerCase();
-        if (filtro) {
-            produtos = produtos.filter(produto => produto.nome.toLowerCase().includes(filtro));
+        const nomeFiltro = filtroNome.value.toLowerCase();
+        const tamanhoFiltro = filtroTamanho.value;
+
+        if (nomeFiltro) {
+            produtos = produtos.filter(produto =>
+                produto.nome.toLowerCase().includes(nomeFiltro)
+            );
         }
 
-        // ✅ Ordenar alfabeticamente pelo nome
+        if (tamanhoFiltro) {
+            produtos = produtos.filter(produto =>
+                produto.tamanho == parseInt(tamanhoFiltro)
+            );
+        }
+
         produtos.sort((a, b) => a.nome.localeCompare(b.nome));
 
         table.innerHTML = "";
@@ -126,6 +136,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (filtroNome) {
         filtroNome.addEventListener("input", carregarProdutos);
+    }
+
+    if (filtroTamanho) {
+        filtroTamanho.addEventListener("input", carregarProdutos); // NOVO
     }
 
     carregarProdutos();
