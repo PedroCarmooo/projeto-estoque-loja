@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const formTitle = document.getElementById("formTitle");
     const cancelarBtn = document.getElementById("cancelarBtn");
     const filtroNome = document.getElementById("filtroNome");
-    const filtroTamanho = document.getElementById("filtroTamanho"); // NOVO
+    const filtroTamanho = document.getElementById("filtroTamanho");
+    const filtroCor = document.getElementById("filtroCor"); // NOVO
 
     addBtn.addEventListener("click", () => {
         formTitle.textContent = "Adicionar Tênis";
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nomeFiltro = filtroNome.value.toLowerCase();
         const tamanhoFiltro = filtroTamanho.value;
+        const corFiltro = filtroCor.value.toLowerCase();
 
         if (nomeFiltro) {
             produtos = produtos.filter(produto =>
@@ -46,8 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }
 
-        produtos.sort((a, b) => a.nome.localeCompare(b.nome));
+        if (corFiltro) {
+            produtos = produtos.filter(produto =>
+                (produto.cor || "").toLowerCase().includes(corFiltro)
+            );
+        }
 
+        produtos.sort((a, b) => a.nome.localeCompare(b.nome));
         table.innerHTML = "";
 
         produtos.forEach(produto => {
@@ -139,7 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (filtroTamanho) {
-        filtroTamanho.addEventListener("input", carregarProdutos); // NOVO
+        filtroTamanho.addEventListener("input", carregarProdutos);
+    }
+
+    if (filtroCor) {
+        filtroCor.addEventListener("input", carregarProdutos); // NOVO
     }
 
     carregarProdutos();
