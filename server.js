@@ -12,7 +12,7 @@ const Produto = require('./models/Produto');
 const PORT = process.env.PORT || 3000;
 
 // 🔒 URI direta (substitua com a sua se mudar)
-const mongoUri = 'mongodb+srv://PedroCarmo:minhocao000@cluster0.ohkivk6.mongodb.net/estoque?retryWrites=true&w=majority&appName=Cluster0';
+const mongoUri = 'mongodb+srv://PedroCarmo:minhocao00@cluster0.ohkivk6.mongodb.net/estoque?retryWrites=true&w=majority&appName=Cluster0';
 
 // Conexão com MongoDB Atlas
 mongoose.connect(mongoUri, {
