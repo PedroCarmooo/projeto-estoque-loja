@@ -79,7 +79,7 @@ h1, h2 {
 }
 
 #formSection {
-  background-color: #1a1a1a;
+  background-color: #1a1a1aff;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(255, 217, 0, 0.097);
