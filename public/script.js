@@ -12,7 +12,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- FUNCIONALIDADES DE ESTOQUE (se os elementos existirem) ---
+    // --- REGISTRO DE USUÁRIO ---
+    const registroForm = document.getElementById("registroForm");
+    if (registroForm) {
+        registroForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const usuario = document.getElementById("usuario").value;
+            const senha = document.getElementById("senha").value;
+
+            try {
+                const resposta = await fetch("/registrar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ usuario, senha })
+                });
+
+                const resultado = await resposta.json();
+
+                if (resultado.sucesso) {
+                    alert("Usuário registrado com sucesso!");
+                    window.location.href = "index.html"; // Redireciona para login
+                } else {
+                    alert(resultado.mensagem || "Erro ao registrar usuário.");
+                }
+            } catch (erro) {
+                console.error("Erro ao registrar:", erro);
+                alert("Erro na conexão com o servidor.");
+            }
+        });
+    }
+
+    // --- FUNCIONALIDADES DE ESTOQUE ---
     const table = document.getElementById("estoqueTable")?.getElementsByTagName("tbody")[0];
     const addBtn = document.getElementById("addProductButton");
     const formSection = document.getElementById("formSection");
