@@ -1,29 +1,44 @@
+// Carrega variáveis do .env
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+
 const app = express();
 
-// Modelos MongoDB
+// Modelos do MongoDB
 const Usuario = require('./models/Usuario');
 const Produto = require('./models/Produto');
 
-// Usa a porta do ambiente (ex: Render) ou 3000 localmente
+// Porta do ambiente (Render) ou local
 const PORT = process.env.PORT || 3000;
 
+// Verifica se a variável de conexão está presente
+const mongoUri = process.env.MONGO_URI;
+if (!mongoUri) {
+  console.error("❌ ERRO: MONGO_URI não está definida no arquivo .env");
+  process.exit(1);
+}
+
 // Conexão com MongoDB Atlas
-mongoose.connect('mongodb+srv://PedroCarmo:minhocao00@cluster0.ohkivk6.mongodb.net/estoque?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 }).then(() => {
   console.log("🟢 Conectado ao MongoDB Atlas");
 }).catch((err) => {
   console.error("🔴 Erro ao conectar ao MongoDB:", err);
 });
 
+// Middleware para tratar JSON e arquivos estáticos
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rotas de autenticação
+// =======================
+// ROTAS DE AUTENTICAÇÃO
+// =======================
+
 app.post('/login', async (req, res) => {
   const { usuario, senha } = req.body;
   try {
@@ -54,7 +69,10 @@ app.post('/registrar', async (req, res) => {
   }
 });
 
-// Rotas de estoque
+// ==================
+// ROTAS DE ESTOQUE
+// ==================
+
 app.get('/api/estoque', async (req, res) => {
   try {
     const produtos = await Produto.find();
@@ -96,7 +114,10 @@ app.delete('/api/estoque/:id', async (req, res) => {
   }
 });
 
-// Inicia o servidor
+// =======================
+// INICIA O SERVIDOR
+// =======================
+
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
