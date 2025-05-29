@@ -1,6 +1,3 @@
-// Carrega variáveis do .env
-require('dotenv').config();
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -14,12 +11,8 @@ const Produto = require('./models/Produto');
 // Porta do ambiente (Render) ou local
 const PORT = process.env.PORT || 3000;
 
-// Verifica se a variável de conexão está presente
-const mongoUri = process.env.MONGO_URI;
-if (!mongoUri) {
-  console.error("❌ ERRO: MONGO_URI não está definida no arquivo .env");
-  process.exit(1);
-}
+// 🔒 URI direta (substitua com a sua se mudar)
+const mongoUri = 'mongodb+srv://PedroCarmo:minhocao000@cluster0.ohkivk6.mongodb.net/estoque?retryWrites=true&w=majority&appName=Cluster0';
 
 // Conexão com MongoDB Atlas
 mongoose.connect(mongoUri, {
@@ -29,6 +22,7 @@ mongoose.connect(mongoUri, {
   console.log("🟢 Conectado ao MongoDB Atlas");
 }).catch((err) => {
   console.error("🔴 Erro ao conectar ao MongoDB:", err);
+  process.exit(1); // Encerra se falhar
 });
 
 // Middleware para tratar JSON e arquivos estáticos
