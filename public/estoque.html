@@ -21,18 +21,20 @@
     <h1>Estoque de Tênis</h1>
 
     <!-- Campo de Filtros -->
-    <div class="filtros">
+    <div style="margin-bottom: 1rem;">
       <input type="text" id="filtroNome" placeholder="Filtrar por nome (ex: Nike)">
       <input type="number" id="filtroTamanho" placeholder="Filtrar por tamanho (ex: 42)" min="1">
       <input type="text" id="filtroCor" placeholder="Filtrar por cor (ex: Branco)">
     </div>
 
-    <!-- Container Lado a Lado -->
-    <div id="estoqueContainer">
+    <!-- Container Geral -->
+    <div id="estoqueContainer" style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
 
-      <!-- Tabela e Botão -->
-      <section id="tabelaSection">
-        <button id="addProductButton">Adicionar Novo Tênis</button>
+      <!-- Botão para adicionar novo tênis -->
+      <button id="addProductButton">Adicionar Novo Tênis</button>
+
+      <!-- Tabela de Tênis -->
+      <section id="tabelaSection" style="width: 100%; max-width: 1000px;">
         <table id="estoqueTable">
           <thead>
             <tr>
@@ -49,8 +51,8 @@
         </table>
       </section>
 
-      <!-- Formulário -->
-      <section id="formSection" style="display: none;">
+      <!-- Formulário de cadastro/edição -->
+      <section id="formSection" style="display: none; width: 100%; max-width: 400px;">
         <h2 id="formTitle">Adicionar Tênis</h2>
         <form id="tenisForm">
           <label for="nome">Nome do Tênis:</label>

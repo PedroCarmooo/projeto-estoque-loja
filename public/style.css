@@ -47,7 +47,7 @@ nav a:hover {
 
 /* ---------- MAIN (Estoque) ---------- */
 main {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 2rem auto;
   padding: 0 1rem;
   display: flex;
@@ -61,43 +61,22 @@ h1, h2 {
   text-align: center;
 }
 
-/* Campo de Filtros */
-.filtros {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-}
-
-.filtros input {
-  max-width: 300px;
-  flex: 1;
-}
-
-/* Container com tabela e formulário lado a lado */
+/* Container principal */
 #estoqueContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 2rem;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-/* Tabela */
-#tabelaSection {
-  flex: 2;
-  max-width: 700px;
+  align-items: center;
   width: 100%;
 }
 
-/* Formulário */
+/* Seções empilhadas e centralizadas */
+#formSection, #tabelaSection {
+  width: 100%;
+  max-width: 600px;
+}
+
 #formSection {
-  flex: 1;
-  max-width: 400px;
-  width: 100%;
   background-color: rgba(26, 26, 26, 0.966);
   padding: 1.5rem;
   border-radius: 12px;
@@ -208,17 +187,4 @@ footer {
   color: #aaa;
   margin-top: 3rem;
   font-size: 0.9rem;
-}
-
-/* ---------- Responsivo ---------- */
-@media (max-width: 900px) {
-  #estoqueContainer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .filtros {
-    flex-direction: column;
-    align-items: center;
-  }
 }
