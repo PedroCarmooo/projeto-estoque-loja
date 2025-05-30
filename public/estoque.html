@@ -27,11 +27,14 @@
       <input type="text" id="filtroCor" placeholder="Filtrar por cor (ex: Branco)">
     </div>
 
-    <!-- Container do Estoque: Tabela + Formulário -->
-    <div id="estoqueContainer">
-      
+    <!-- Container Geral -->
+    <div id="estoqueContainer" style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+
+      <!-- Botão para adicionar novo tênis -->
+      <button id="addProductButton">Adicionar Novo Tênis</button>
+
       <!-- Tabela de Tênis -->
-      <section id="tabelaSection">
+      <section id="tabelaSection" style="width: 100%; max-width: 1000px;">
         <table id="estoqueTable">
           <thead>
             <tr>
@@ -46,13 +49,10 @@
           </thead>
           <tbody></tbody>
         </table>
-
-        <!-- Botão para adicionar novo tênis -->
-        <button id="addProductButton">Adicionar Novo Tênis</button>
       </section>
 
-      <!-- Formulário de cadastro -->
-      <section id="formSection" style="display: none;">
+      <!-- Formulário de cadastro/edição -->
+      <section id="formSection" style="display: none; width: 100%; max-width: 400px;">
         <h2 id="formTitle">Adicionar Tênis</h2>
         <form id="tenisForm">
           <label for="nome">Nome do Tênis:</label>
@@ -76,6 +76,7 @@
           <button type="button" id="cancelarBtn">Cancelar</button>
         </form>
       </section>
+
     </div>
   </main>
 

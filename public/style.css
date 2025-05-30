@@ -53,6 +53,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 }
 
 h1, h2 {
@@ -60,22 +61,19 @@ h1, h2 {
   text-align: center;
 }
 
-/* Seções lado a lado em telas grandes */
+/* Container principal */
 #estoqueContainer {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
+  width: 100%;
 }
 
-@media (min-width: 768px) {
-  #estoqueContainer {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  #formSection, #tabelaSection {
-    flex: 1;
-  }
+/* Seções empilhadas e centralizadas */
+#formSection, #tabelaSection {
+  width: 100%;
+  max-width: 600px;
 }
 
 #formSection {
@@ -85,6 +83,7 @@ h1, h2 {
   box-shadow: 0 0 10px rgba(255, 217, 0, 0.097);
 }
 
+/* Inputs */
 label {
   font-weight: bold;
   margin-top: 1rem;
@@ -130,7 +129,7 @@ button:hover {
   background-color: #e6be00;
 }
 
-/* Botões secundários menores (ex: editar/remover) */
+/* Botões secundários menores */
 .editBtn,
 .removeBtn {
   padding: 6px 12px;
@@ -159,6 +158,7 @@ button:hover {
   background-color: #d32f2f;
 }
 
+/* Tabela */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -177,125 +177,6 @@ table th, table td {
 table th {
   background-color: #2e2e2e;
   color: #ffd700;
-}
-
-/* ---------- LOGIN & REGISTRO ---------- */
-.auth-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #121212;
-  padding: 1rem;
-}
-
-.auth-container {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-  width: 100%;
-  max-width: 350px;
-}
-
-.auth-title {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #ffd700;
-}
-
-.auth-container label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: bold;
-}
-
-.auth-container input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #444;
-  border-radius: 6px;
-  background-color: #2a2a2a;
-  color: #f0f0f0;
-  margin-top: 0.3rem;
-}
-
-.auth-container input:focus {
-  border-color: #ffd700;
-}
-
-.auth-container input::placeholder {
-  color: #aaa;
-}
-
-.auth-container button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 1.5rem;
-  background-color: #ffd700;
-  color: #1e1e1e;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.auth-container button:hover {
-  background-color: #e6be00;
-}
-
-.auth-footer-text {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.auth-footer-text a {
-  color: #ffd700;
-  text-decoration: none;
-}
-
-.auth-footer-text a:hover {
-  text-decoration: underline;
-}
-
-/* ---------- Ícone olho senha ---------- */
-.toggle-password {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  user-select: none;
-  color: #aaa;
-}
-
-.password-wrapper {
-  position: relative;
-}
-
-.password-wrapper input {
-  padding-right: 40px;
-}
-
-/* ---------- FEEDBACK E MENSAGENS ---------- */
-.alert {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.alert-success {
-  background-color: #2e7d32;
-  color: #fff;
-}
-
-.alert-error {
-  background-color: #c62828;
-  color: #fff;
 }
 
 /* ---------- FOOTER ---------- */
